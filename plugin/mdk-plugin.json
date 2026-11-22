@@ -1,7 +1,7 @@
 {
   "routeTableVersion": "1",
   "name": "reporting",
-  "version": "0.1.0",
+  "version": "0.14.0",
   "description": "Reporting Tool Lite: operations and financial reports for one mining site.",
   "routes": [
     {

@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Reporting Tool Lite",
-    "version": "0.1.0",
+    "version": "0.14.0",
     "description": "Operations and financial reports for one mining site, read from its MDK workers."
   },
   "servers": [

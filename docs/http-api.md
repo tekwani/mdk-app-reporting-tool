@@ -26,17 +26,18 @@ mean any particular caller is allowed. "Not declared" marks something the declar
 
 ## Errors
 
-The application error codes the operations declare, and the HTTP status each arrives with. "Not declared" marks a code whose status the
-declaration does not state.
+The application error codes the operations declare, the HTTP status each arrives with, when it fires and what the caller does about it. "Not
+declared" marks what the declaration does not state.
 
 An error response's body is `{ statusCode, error, message }`:
 
 - `statusCode`: The HTTP status, repeated
 - `error`: The HTTP status text, such as `Bad Request`
-- `message`: The `ERR_*` code, followed by `: ` and a detail when there is one. For a request that fails the route's schema, the validation message instead.
+- `message`: The `ERR_*` code, followed by `: ` and a detail when there is one. For a request that fails the route's schema, the validation
+  message instead.
 
-| Code | Status | Operations | When |
-| ---- | ------ | ---------- | ---- |
-| `ERR_APP_NOT_READY` | `503` | `GET /api/reporting/site`, `GET /api/reporting/operations`, `GET /api/reporting/miners`, `GET /api/reporting/consumption`, `GET /api/reporting/financials`, `GET /api/reporting/costs`, `PUT /api/reporting/costs` | the app's store is not open yet |
-| `ERR_BAD_COSTS` | `400` | `GET /api/reporting/costs`, `PUT /api/reporting/costs` | `GET /api/reporting/costs`: `year` is outside the years Cost Input covers; `PUT /api/reporting/costs`: `year` is missing or outside the years Cost Input covers, `months` is empty, a month is outside 1 to 12 or appears twice, or a cost is not a non-negative number or null |
-| `ERR_BAD_RANGE` | `400` | `GET /api/reporting/operations`, `GET /api/reporting/consumption`, `GET /api/reporting/financials` | `start` is not before `end`, or the range is too long for the granularity (hour: 93 days, others: 3 years) |
+| Code | Status | Operations | Fires when | Fix |
+| ---- | ------ | ---------- | ---------- | --- |
+| `ERR_APP_NOT_READY` | `503` | `GET /api/reporting/site`, `GET /api/reporting/operations`, `GET /api/reporting/miners`, `GET /api/reporting/consumption`, `GET /api/reporting/financials`, `GET /api/reporting/costs`, `PUT /api/reporting/costs` | the app's store is not open yet | Not declared |
+| `ERR_BAD_COSTS` | `400` | `GET /api/reporting/costs`, `PUT /api/reporting/costs` | `GET /api/reporting/costs`: `year` is outside the years Cost Input covers; `PUT /api/reporting/costs`: `year` is missing or outside the years Cost Input covers, `months` is empty, a month is outside 1 to 12 or appears twice, or a cost is not a non-negative number or null | Not declared |
+| `ERR_BAD_RANGE` | `400` | `GET /api/reporting/operations`, `GET /api/reporting/consumption`, `GET /api/reporting/financials` | `start` is not before `end`, or the range is too long for the granularity (hour: 93 days, others: 3 years) | Not declared |
